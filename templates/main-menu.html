@@ -1,0 +1,83 @@
+<div class="page-header bottom-mar">
+  <div class="page-header-menu">
+    <div class="container-fluid">
+      <!-- BEGIN HEADER SEARCH BOX -->
+      <form class="search-form" action="" method="GET">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" name="query">
+          <span class="input-group-btn"> <a href="javascript:;" class="btn submit"> <i class="icon-magnifier"></i> </a> </span> </div>
+      </form>
+      <div class="hor-menu">
+        <ul class="nav navbar-nav">
+          <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active"> <a href="javascript:;"> <i aria-hidden="true" class="fa fa-home fa-2"></i> Dashboard <span class="arrow"></span> </a> </li>
+          <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" uib-dropdown ng-show="menus['Takeoff']"> <a href="#" uib-dropdown-toggle> Takeoff <b class='caret'></b> </a>
+            <tree tree='menus["Takeoff"]'></tree>
+          </li>
+        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" uib-dropdown ng-show="menus['Quote']"> <a href="#" uib-dropdown-toggle> Quote <span class='caret'></span> </a>
+            <tree tree='menus["Quote"]'></tree>
+          </li>
+          <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" uib-dropdown ng-show="menus['Job Order']"> <a href="#" uib-dropdown-toggle> Job Order <b class='caret'></b> </a>
+            <tree tree='menus["Job Order"]'></tree>
+          </li>
+          <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" uib-dropdown ng-show="menus['Order Book']"> <a href="#" uib-dropdown-toggle> Order Book <span class='caret'></span> </a>
+            <tree tree='menus["Order Book"]'></tree>
+          </li>
+         
+          <li class="menu-dropdown classic-menu-dropdown "> <a href="#"> Inventory <span class="caret"></span> </a>
+            <ul class="dropdown-menu pull-left">
+              <li ng-show="menus['AW']" aria-haspopup="true" class="dropdown-submenu"> <a href="javascript:;" class="nav-link nav-toggle "> AW Inventory <span class="arrow"></span> </a>
+                <ul class="dropdown-menu" uib-dropdown>
+                  <li aria-haspopup="true" class=" " ng-repeat="awMenuItem in menus['AW']" ng-class="{divider: awMenuItem.name == 'divider'}"> <a ui-sref="{{awMenuItem.link}}" ng-if="awMenuItem.name !== 'divider' " class="nav-link ">{{awMenuItem.name}} </a> </li>
+                </ul>
+              </li>
+              <li arng-show="menus['AWF']" ia-haspopup="true" class="dropdown-submenu"> <a href="javascript:;" class="nav-link nav-toggle "> AWF Inventory <span class="arrow"></span> </a>
+                <ul class="dropdown-menu" uib-dropdown>
+                  <li aria-haspopup="true" class=" " ng-repeat="awfMenuItem in menus['AWF']" ng-class="{divider: awfMenuItem.name == 'divider'}"> <a ui-sref="{{awfMenuItem.link}}" ng-if="awfMenuItem.name !== 'divider' " class="nav-link ">{{awfMenuItem.name}} </a> </li>
+                </ul>
+              </li>
+              <li ng-show="menus['SBC']" aria-haspopup="true" class="dropdown-submenu"> <a href="javascript:;" class="nav-link nav-toggle "> SBC Inventory <span class="arrow"></span> </a>
+                <ul class="dropdown-menu" uib-dropdown>
+                  <li aria-haspopup="true" class=" " ng-repeat="sbcMenuItem in menus['SBC']" ng-class="{divider: sbcMenuItem.name == 'divider'}"> <a ui-sref="{{sbcMenuItem.link}}" ng-if="sbcMenuItem.name !== 'divider' " class="nav-link ">{{sbcMenuItem.name}} </a> </li>
+                </ul>
+              </li>
+              <li ng-show="menus['SPL']" aria-haspopup="true" class="dropdown-submenu"> <a href="javascript:;" class="nav-link nav-toggle "> SPL Inventory <span class="arrow"></span> </a>
+                <ul class="dropdown-menu" uib-dropdown>
+                  <li aria-haspopup="true" class=" " ng-repeat="splMenuItem in menus['SPL']" ng-class="{divider: splMenuItem.name == 'divider'}"> <a ui-sref="{{splMenuItem.link}}" ng-if="splMenuItem.name !== 'divider' " class="nav-link ">{{splMenuItem.name}} </a> </li>
+                </ul>
+              </li>
+              <li ng-show="menus['J']" aria-haspopup="true" class="dropdown-submenu"> <a href="javascript:;" class="nav-link nav-toggle "> J Inventory <span class="arrow"></span> </a>
+                <ul class="dropdown-menu" uib-dropdown>
+                  <li aria-haspopup="true" class=" " ng-repeat="jMenuItem in menus['J']" ng-class="{divider: jMenuItem.name == 'divider'}"> <a ui-sref="{{jMenuItem.link}}" ng-if="jMenuItem.name !== 'divider' " class="nav-link ">{{jMenuItem.name}} </a> </li>
+                </ul>
+              </li>
+              <li ng-show="menus['Q']" aria-haspopup="true" class="dropdown-submenu"> <a href="javascript:;" class="nav-link nav-toggle "> Q Inventory <span class="arrow"></span> </a>
+                <ul class="dropdown-menu" uib-dropdown>
+                  <li aria-haspopup="true" class=" " ng-repeat="qMenuItem in menus['Q']" ng-class="{divider: qMenuItem.name == 'divider'}"> <a ui-sref="{{qMenuItem.link}}" ng-if="qMenuItem.name !== 'divider' " class="nav-link ">{{qMenuItem.name}} </a> </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+         
+          <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" uib-dropdown uib-dropdown ng-show="menus['BBT']">
+          <a href="#" uib-dropdown-toggle> BBT <span class='caret'></span> </a>
+          <tree tree='menus["BBT"]'></tree>
+          </li>
+          <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" uib-dropdown uib-dropdown ng-show="menus['Claim']">
+          <a href="#" uib-dropdown-toggle> Claims <span class='caret'></span> </a>
+          <tree tree='menus["Claim"]'></tree>
+          </li>
+          <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" uib-dropdown uib-dropdown ng-show="menus['Marketing']">
+          <a href="#" uib-dropdown-toggle> Marketing <span class='caret'></span> </a>
+          <tree tree='menus["Marketing"]'></tree>
+          </li>
+          <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown" uib-dropdown uib-dropdown ng-show="menus['Collection']">
+          <a href="#"> Collection </a>
+          </li>
+        </ul>
+      </div>
+      <!-- END MEGA MENU -->
+    </div>
+  </div>
+</div>
+<div style="height:20px;"></div>
+<div class="clearfix">&nbsp;</div>

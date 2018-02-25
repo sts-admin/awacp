@@ -1,0 +1,48 @@
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+<div class="container-fluid">
+	<div class="clearfix">
+		<div ng-init="roleVm.initRoles();">
+		<form ng-submit="roleVm.updateRolePermissions()">
+			<div class="panel panel-default  shadow">			
+				<div class="panel-heading">
+					<label>Role</label>
+					<select 
+					  ng-model="roleVm.selectedRole" 
+					  ng-options="role as role.roleDescription for role in roleVm.roles"  ng-change="roleVm.getRoleWithPermissions();" ng-required = "true">
+					  <option value="">--- Select ---</option>
+					</select>
+					<span ng-show="roleVm.selectedRole != null">
+						<label>
+							has <span class="badge">{{roleVm.role.permissionArray?roleVm.role.permissionArray.length:0}}</span> permission(s) at present.
+						</label>
+						<input type="button" value="Select All" ng-click="roleVm.checkAll();">
+						<input type="button" value="Clear All" ng-click="roleVm.uncheckAll();">
+					</span>
+				</div>
+				<div class="panel-body">
+					
+						<ul ng-repeat="group in roleVm.allPermissionsGroup" style="list-style-type: none;" class="col-md-6 col-sm-6 col-xs-12">
+							<li class="col-xs-12">
+								<label style="font-weight:bold;font-size:12pt;">{{group.groupName}}</label>
+							</li>
+							<li ng-repeat="permission in group.permissions" style="color:gray; font-size:10pt;" class="col-md-4 col-sm-4 col-xs-12">
+								
+								<label>
+									<input type="checkbox" checklist-model="roleVm.role.permissionArray" checklist-value="permission.authority" ng-click="roleVm.checkSelection();"> {{permission.description}}
+								</label>
+							</li>
+						</ul>	
+						
+					</form>			
+					
+				</div>
+				<div class="panel-footer" ng-show="roleVm.showUpdateBtn">
+					<span><input type="submit" class="btn btn-info" value="Update {{roleVm.selectedRole.roleDescription}} Permission(s)"></span>
+				</div>				
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div ng-include="'templates/footer.html'" ></div>

@@ -1,0 +1,144 @@
+
+<!-- ************************************************************************************************************************************-->
+
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+
+<div class="container-fluid">
+	<div class="clearfix">
+		<div class="panel panel-default">
+				<div class="panel-heading panel-heading-top form-heading">
+					<label>{{truckerVm.action}} Trucker</label>				
+				</div>
+				<div class="panel-body"  style="background:#ccaa46;">
+					<form name="truckerAddForm" ng-submit="truckerVm.addOrUpdateTrucker();">
+						<!-- .row -->
+						<div class="row">
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> 
+							<span class="form-label">
+								Name
+							</span>
+							<i class="star red">*</i>
+							<span class="colon">:</span> 
+						</div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" placeholder="Trucker Name" class="form-control" maxlength="100" oninvalid="this.setCustomValidity('Enter Trucker Name');" onkeypress="this.setCustomValidity('');" ng-model="truckerVm.trucker.name" ng-required="true" autofocus />
+							</div>
+						  </div>
+						   <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> 
+							<span class="form-label">Email ID</span>
+							<i class="star red">*</i>
+							<span class="colon">:</span> </div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="email" class="form-control" placeholder="Enter Email" maxlength="100" oninvalid="this.setCustomValidity('Enter Email');" onkeypress="this.setCustomValidity('');" ng-model="truckerVm.trucker.email"  ng-required="true" />
+							</div>
+						  </div>
+						  	   <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> 
+							<span class="form-label">Website</span>
+							<i class="star red">*</i>
+							<span class="colon">:</span> 
+						</div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							 <input type="website" class="form-control" placeholder="Enter website" maxlength="150" oninvalid="this.setCustomValidity('Enter Email');" onkeypress="this.setCustomValidity('');" ng-model="truckerVm.trucker.website"  ng-required="true" />
+							</div>
+						  </div>					  <!-- .col -->
+						 
+						  <!-- .col -->
+						  <!-- .col -->
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right">
+							<span class="form-label">Code</span>
+							<span class="colon">:</span> 
+						</div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Enter Code" maxlength="50" oninvalid="this.setCustomValidity('Enter Code');" onkeypress="this.setCustomValidity('');" ng-model="truckerVm.trucker.code" />
+							</div>
+						  </div>
+						  <!-- .col -->
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right">
+						  <span class="form-label">Phone</span>
+						  <span class="colon">:</span> 
+						 </div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Enter Phone" maxlength="20" oninvalid="this.setCustomValidity('Enter Phone');" onkeypress="this.setCustomValidity('');" ng-model="truckerVm.trucker.phone" />
+							</div>
+						  </div>
+
+						   <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right">
+					  <span class="form-label">Login</span>
+					  <span class="colon">:</span> 
+					 </div>
+					  <!-- .col -->
+					  <div class="col-lg-10 col-md-10 col-sm-9">
+						<div class="form-group">
+						  <input type="text" class="form-control" placeholder="Enter Login" maxlength="15" oninvalid="this.setCustomValidity('Enter Login');" onkeypress="this.setCustomValidity('');" ng-model="truckerVm.trucker.login" />
+						</div>
+					  </div>
+
+					   <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="form-label">Password</span><span class="colon">:</span> </div>
+					  <!-- .col -->
+					  <div class="col-lg-10 col-md-10 col-sm-9">
+						<div class="form-group">
+						  <input type="text" class="form-control" placeholder="Enter Password" maxlength="15" ng-model="truckerVm.trucker.password" />
+						</div>
+					  </div>
+					  
+					  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="form-label">Tracking URL</span><span class="colon">:</span> </div>
+					  <!-- .col -->
+					  <div class="col-lg-10 col-md-10 col-sm-9">
+						<div class="form-group">
+						  <input type="text" class="form-control" placeholder="Enter Tracking URL" maxlength="150" ng-model="truckerVm.trucker.trackingUrl" />
+						</div>
+					  </div>
+						 
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="form-label"></span><span class="colon"></span> </div>
+                          <div class="col-lg-10 col-md-10 col-sm-9"> <span>Please use "[TRACKNUM]" on the place of tracking number in URL</span> </div>
+						</div>
+						<!-- .row -->
+                        
+                        <div class="row"> 
+							<div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> 
+								<span class="new-take-off-title">Trucker Logo</span>
+								<span class="colon">:</span> 
+							</div><!-- .col --> 
+							<div class="col-lg-10 col-md-10 col-sm-9"> 
+								<div class="form-group"> 
+									<input type="file" name="truckerLogoFile" id="truckerLogoFile" />
+								</div> 
+							</div><!-- .col --> </div>
+					   <br />
+						<!-- .row -->
+						<div class="row checkrow">
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> &nbsp; </div>
+						  <!-- .col -->
+						  <div class="col-lg-9 col-md-9 col-sm-8 pad_top_30">
+							<input type="submit" value="{{truckerVm.action}} Trucker" class="actions submit-btn btn btn-primary">
+							&nbsp;&nbsp;
+							<input type="reset" value="Reset" class="actions reset-btn btn btn-warning">
+							&nbsp;&nbsp;
+							<input type="button" value="Go Back" class="actions reset-btn btn btn-info" ng-click="truckerVm.cancelTruckerAction();">
+							<span class="spinner" style="display:none;">
+								<img src="images/loading.gif" />
+							</span>
+						  </div>
+						  <!-- .col -->
+						</div>
+						<!-- .row -->
+					</form>
+				</div>
+			</div>
+	</div>
+</div>
+<div style="clear:both;height:50px;"></div>
+<div ng-include="'templates/footer.html'" ></div>
+
+

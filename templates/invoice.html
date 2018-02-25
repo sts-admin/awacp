@@ -1,0 +1,154 @@
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+<div class="container-fluid" style="margin-top:-10px;">
+	<div class="clearfix">
+		<div class="panel panel-default shadow" style="width:1000px;text-align:center;">			
+			<table border="0" style="width:1000px; font-family:Verdana, Geneva, sans-serif; font-size:14px; border:#999 1px dashed; padding:5px;">
+			<tr>
+				<td> <span style="font-size:11px;"><b>PH. #<br /></b></span></td>
+				<td align="center">
+					<a href="javascript:void(0);" onclick="window.print();">
+						<!--<img src="images/awacp_big_logo.png" height="70" width="300" border="0" />-->
+					</a>
+				</td>
+				<td> <span style="font-size:11px;"><b>Fax #<br /></b></span></td>
+			</tr>
+			<tr>
+				<td style="width:20%;" align="left"></td>
+				<td style="width:60%;" align="center">
+					<!--<span style="font-size:11px;"><b>270 MADISON AVENUE, NEW YORK, N.Y. 10016</b></span>-->
+				</td>
+				<td style="width:20%;" align="right"><a href="#" onclick="window.print()">Print</a></td>
+			</tr>
+			<tr><td colspan="3"><hr /></td></tr>
+			<tr>
+				<td colspan="3" valign="top">
+					<table border="0" style="width:100%; font-family:Verdana, Geneva, sans-serif; font-size:14px; line-height:27px;" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="20%" valign="top"><b>AW INVOICE#</b></td>
+						<td width="30%"></td>
+						<td width="30%"><b>DATE</b></td>
+						<td width="20%">{{invoiceVm.invoice.dateCreated | date:'shortDate'}}</td>
+					</tr>
+					<tr>
+						<td valign="top"><b>JOB ID</b></td>
+						<td valign="top"><strong>{{invoiceVm.jobOrder.orderNumber}}</strong></td>
+						<td valign="top"><b>SHIP DATE</b></td>
+						<td valign="top">{{invoiceVm.invoice.shipDate | date:'shortDate'}}</td>
+					</tr>
+					<tr>
+						<td valign="top"><b>CONTRACTOR</b></td>
+						<td valign="top">{{invoiceVm.jobOrder.contractorName}}</td>
+						<td valign="top"><b>SHIPMENT</b></td>
+						<td valign="top"></td>
+					</tr>
+					<tr>
+						<td valign="top"><b>JOB NAME</b></td>
+						<td valign="top">{{invoiceVm.jobOrder.jobName}}</td>
+						<td valign="top"><b>SHIP VIA</b></td>
+						<td valign="top">{{invoiceVm.invoice.shippedVia}}</td>
+					</tr>
+					<tr>
+						<td valign="top"><b>CUSTOMER PO</b></td>
+						<td valign="top" colspan="3"></td>
+					</tr>
+					<tr>
+						<td valign="top"><b>SHIP TO</b></td>
+						<td valign="top" colspan="3">{{invoiceVm.invoice.shipTo}}</td>
+					</tr>
+					<tr>
+						<td valign="top"><b>AW ORDER(S)</b></td>
+						<td valign="top" colspan="3"></td>
+					</tr>        
+					<tr><td colspan="4">&nbsp;</td></tr>
+					<tr>
+						<td colspan="4" valign="top">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-family:Verdana, Geneva, sans-serif; font-size:14px; border:#999 1px dotted; border-bottom:none;">
+							
+							<tr ng-show="invoiceVm.invoice.item1Id != undefined">
+								<td style="padding:5px; border-bottom:#999 1px dotted;">
+									{{invoiceVm.invoice.item1Name}}
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:5px; border-bottom:#999 1px dotted;">
+									{{invoiceVm.invoice.item2Name}}
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:5px; border-bottom:#999 1px dotted;">
+									{{invoiceVm.invoice.item3Name}}
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:5px; border-bottom:#999 1px dotted;">
+									{{invoiceVm.invoice.item4Name}}
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:5px; border-bottom:#999 1px dotted;">
+									{{invoiceVm.invoice.item5Name}}
+								</td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					<tr><td colspan="4">&nbsp;</td></tr>
+
+					<tr>
+						<td><b>SALESMAN</b></td>
+					  <td>{{invoiceVm.invoice.salesPersonCode}}</td>
+						<td><b>TNP FOB FACTORY</b></td>
+						<td>${{((invoiceVm.invoice.partialPayment * invoiceVm.invoice.taxRate) / 100)}}</td>
+					</tr>
+					<tr>
+						<td><b>USERCODE</b></td>
+						 <td>{{invoiceVm.invoice.createdByUserCode}}</td>
+						<td>
+							<b>SALES TAX ({{invoiceVm.invoice.taxRate}}%)</b>
+						</td>
+						<td>$<?=number_format($taxAMT,2)?></td>
+					</tr>
+					<tr>
+						<td><b></b></td>
+						<td></td>
+						<td><b>RESALE DIR. PAY</b></td>
+						<td>{{invoiceVm.invoice.prePayAmount}}</td>
+					</tr>
+					<tr>
+						<td><b></b></td>
+						<td></td>
+						<td><b>TAX EXEMPT#</b></td>
+						<td>{{invoiceVm.invoice.taxExemptNumber}}</td>
+					</tr>
+					<tr>
+						<td><b></b></td>
+						<td></td>
+						<td><b>LESS PREPAY CK#</b></td>
+						<td>{{invoiceVm.invoice.prePayCheckNumber}}</td>
+					</tr>
+					<tr>
+						<td><b></b></td>
+						<td></td>
+						<td><b>TOTAL</b></td>
+						<? $taxAMT = (($record['job_amt'] * $record['salestax'])/100)?>
+						<td>${{invoiceVm.invoice.partialPayment +  ((invoiceVm.invoice.partialPayment * invoiceVm.invoice.taxRate) / 100) }}</td>
+					</tr>
+					<tr>
+						<td><b></b></td>
+						<td></td>
+						<td><b>BALANCE TO BILL</b></td>
+						<td>${{invoiceVm.jobOrder.invoiceMode === 'inv'?0:invoiceVm.invoice.billableAmount - invoiceVm.invoice.totalPayment}}</td>
+					</tr>
+					<tr><td colspan="4" height="30">&nbsp;</td></tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" height="50">&nbsp;</td>
+			</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<div ng-include="'templates/footer.html'" ></div>

@@ -1,0 +1,115 @@
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+<div class="container-fluid" style="margin-top:-10px;">
+  <div class="clearfix">
+    <div class="panel panel-default shadow" ng-init="tcVm.listTruckerClaims('all');">
+      <div class="panel-heading form-heading panel-heading-top">
+        <label>Trucker Claims</label>
+		<span class="pull-right"><a href ui-sref="trucker-claim-add" >Add Claim</a></span>	
+      </div>
+      <div class="panel-body">
+        <div class="row">		
+		
+			<div style="text-align:right;">
+				<div class="col-lg-2 col-md-2 col-sm-6 per-page-row text-left">
+					Per page Rows 
+					<select ng-class="styledselect_pages" style="outline:none;"
+					  ng-model="tcVm.pageSize" 
+					  ng-options="size for size in tcVm.pageSizeList" ng-change="tcVm.setCurrentPageSize(tcVm.pageSize);" >
+					</select>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 dashboard-content"> 
+					<a href="javascript:void(0);" onclick="ClearSearch('engineers');" class="btn btn-primary width-full">Clear Search</a> 
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 text-center">
+            <select onchange="claim_status()" class="styledselect_5826pages" id="claim_status_dropdown" name="claim_status">
+              <option value="">--</option>
+              <option style="color:#F00;" value="open">RED FSR</option>
+              <option style="color:#090;" value="closed">GREEN FSR</option>
+            </select>
+          </div>
+				<ul uib-pagination total-items="tcVm.totalItems" items-per-page = "tcVm.pageSize" ng-model="tcVm.currentPage" ng-change="tcVm.pageChanged()"></ul>
+			</div>
+          
+          
+          <!-- .col -->
+          
+        </div>
+      </div>
+      <div class="row" id="contents" style="margin-top:25px; float:left;"> 
+        <!-- .col -->
+        <div class="col-lg-12">
+          <form name="truckerclaim_view_form" method="post" action="" class="table-container" id="truckerclaim_view_form">
+            <input type="hidden" value="trucker" name="claimtype" id="claimtype">
+            <input type="hidden" value="" name="claim_status" id="claim_status">
+            <table width="100%" cellspacing="0" cellpadding="0" border="1" class="table-responsive theme-table">
+              <thead>
+                <tr style="background:#FFB7B7;">
+                  <td width="7%">&nbsp;</td>
+                  <td></td>
+                  <td align="center"><input type="text" value="" name="ordernum" class="searchtxt form-control form-control-2"></td>
+                  <td align="center"><input type="text" value="" name="claim_code" class="searchtxt form-control form-control-2"></td>
+                  <td align="center"><input type="text" value="" name="orbf" class="searchtxt form-control form-control-2"></td>
+                  <td align="center"><input type="text" value="" name="contractor" class="searchtxt form-control"></td>
+                  <td align="center"><input type="text" value="" name="tracking" class="searchtxt form-control form-control-2"></td>
+                  <td align="center"><input type="text" value="" name="trucker" class="searchtxt form-control form-control-2"></td>
+                  <td align="center"><input type="text" value="" name="claim_cost" class="searchtxt form-control form-control-2"></td>
+                  <td align="center" class="c6"><input type="text" value="" name="reason_for_claim" class="searchtxt form-control form-control-2"></td>
+                  <td align="center" class="c6"><input type="text" value="" maxlength="2" name="sp" class="searchtxt form-control form-control-2"></td>
+                  <td align="center"><input type="text" value="" name="uc" class="searchtxt form-control form-control-2"></td>
+                  <td width="8%" align="center">&nbsp;</td>
+                </tr>
+                <tr style="background:#F99;">
+                  <td align="center">Date</td>
+                  <td align="center">PDF</td>
+                  <td align="center">Claim for<br>
+                    Order</td>
+                  <td align="center">FSR#</td>
+                  <td align="center">ORBF</td>
+                  <td align="center">Contractor</td>
+                  <td align="center">Tracking#</td>
+                  <td align="center">Trucker</td>
+                  <td align="center">Claim<br>
+                    Amount</td>
+                  <td align="center">Reason for<br>
+                    Claim</td>
+                  <td align="center">SP</td>
+                  <td align="center">UC</td>
+                  <td align="center">Status</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr height="25" style="color:#009900" ng-repeat="tc in tcVm.claims track by $index">
+                  <td style="padding-left:5px;"> {{tc.dateCreated | date:'shortDate'}}</td>
+				  <td align="center" >
+					<a href ng-click="tcVm.showFileListingView('TC_PDF', tc.id, 'Trucker Claim PDF', 'large', '.pdf', 'list-view');">
+						<span class="badge">{{tc.pdfDocCount}}</span>
+					</a>
+					<a href ng-click="tcVm.showFileListingView('TC_PDF', tc.id, 'Trucker Claim PDF', 'large', '.pdf', 'upload-view');">						
+						<img src="images/FileUploadIcon.png" alt="image" border="0" />
+					</a>
+				  </td>
+                  <td align="center" style="padding-left:5px;"> {{tc.orderBookNumber}}</td>
+                  <td align="center" style="padding-left:5px;">
+					<a href ui-sref="fsr-trucker({claimId:tc.id})">CT-0001</a>								
+				  </td>
+                  <td align="center" style="padding-left:5px;"> {{tc.orbf}}</td>
+                  <td style="padding-left:5px;"> {{tc.contractor.name}}</td>
+                  <td align="center" style="padding-left:5px;"> {{tc.tracking}}</td>
+                  <td style="padding-left:5px;"> {{tc.trucker.name}}</td>
+                  <td align="center" style="padding-left:5px;"> {{tc.claimAmount | currency}}</td>
+                  <td style="padding-left:5px;"> {{tc.reasonForClaim}}</td>
+                  <td align="center" style="padding-left:5px;"> {{tc.salesPersonName}}</td>
+                  <td align="center" style="padding-left:5px;"> {{tc.userCode}}</td>
+                  <td align="center" style="font-weight:bold;">{{tc.status}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div ng-include="'templates/footer.html'" ></div>

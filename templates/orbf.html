@@ -1,0 +1,165 @@
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+<div class="container-fluid" style="margin-top:-10px;">
+  <div class="clearfix">
+    <div class="panel panel-default shadow" ng-init="orbfVm.initOrbfInputs();">
+      <div class="panel-body">
+        <section>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xss-12 dashboard-content">
+                <h3>Enter ORBF Number</h3>
+              </div>
+              <!-- .col -->
+            </div>
+            <!-- .row -->
+            <div class="row">
+			  <form class="table-container" name="orbf" ng-submit="orbfVm.saveOrbf();">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
+                  <tbody>
+                    <tr>
+                      <td valign="top" align="left"><!-- start id-form -->
+                        <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left" style="font-size:12px;" id="id-form">
+                          <tbody>
+                            <tr>
+                              <td valign="top" colspan="4"><table width="90%" cellspacing="0" cellpadding="0" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td valign="top" colspan="2"><table width="90%" cellspacing="0" cellpadding="0" border="1" style="padding:5px; font-size:12px;">
+                                          <tbody>
+                                            <tr>
+                                              <td style="padding:5px;"><strong>Date</strong></td>
+                                              <td style="padding:5px;"><strong>AWACP PO#</strong></td>
+                                              <td style="padding:5px;"><strong>Customer Name</strong></td>
+                                              <td style="padding:5px;"><strong>Job Name</strong></td>
+                                              <td style="padding:5px;"><strong>Salesman</strong></td>
+                                              <td style="padding:5px;"><strong>Comments</strong></td>
+                                            </tr>
+                                            <tr>
+                                              <td style="padding:5px; background:#FFF;">{{orbfVm.jobOrder.dateCreated | date:'shortDate'}}</td>
+                                              <td style="padding:5px; background:#FFF;">{{orbfVm.jobOrder.poName}}</td>
+                                              <td style="padding:5px; background:#FFF;">BREFFNI MECH</td>
+                                              <td style="padding:5px; background:#FFF;">{{orbfVm.jobOrder.jobName}}</td>
+                                              <td style="padding:5px; background:#FFF;">{{orbfVm.jobOrder.salesPersonName}}</td>
+                                              <td style="padding:5px; background:#FFF;">{{orbfVm.jobOrder.comment}}</td>
+                                            </tr>
+                                          </tbody>
+                                        </table></td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="2">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                      <input type="hidden" value="75464" name="oid">
+                                      <td width="11%" valign="top" style="padding:5px;"><strong>Enter ORBF:</strong></td>
+                                      <td width="89%" align="left" style="padding:5px;">
+										<input name="orbf" ng-model="orbfVm.orbf.orbf" type="text" placeholder="Enter ORBF" class="form-control" maxlength="100" oninvalid="this.setCustomValidity('Enter ORBF');" onkeypress="this.setCustomValidity('');" />
+										</td>
+                                    </tr>
+                                    <tr>
+                                      <td valign="top" align="left" colspan="2"><table width="100%" border="0">
+                                          <tbody>
+                                            <tr>
+                                              <td width="8%" valign="top"><strong>Trucker 1</strong>:</td>
+                                              <td width="20%" align="left">
+												<select name="truckerOne" class="form-control"  
+												  ng-model="orbfVm.orbf.truckerOne" 
+												  ng-options="c.id as c.name for c in orbfVm.truckers">
+												  <option value="">--- Select ---</option>
+												</select>
+											  </td>
+                                              <td width="10%" valign="top"><strong>Tracking Link 1</strong>:</td>
+                                              <td width="40%" align="left">
+												<input name="orbf" ng-model="orbfVm.orbf.trakingLinkOne" type="text" placeholder="Enter Tracking Link 1" class="form-control" maxlength="100" oninvalid="this.setCustomValidity('Enter Tracking Link 1');" onkeypress="this.setCustomValidity('');" />
+												</td>
+											  <td width="7%" valign="top"><strong>Status</strong>:</td>
+											  <td width="15%" align="left">
+												<input name="orbf" ng-model="orbfVm.orbf.statusOne" type="text" placeholder="Delivery Status" class="form-control" />
+												</td>
+                                            </tr>
+                                            <tr>
+                                              <td width="8%" valign="top"><strong>Trucker 2</strong>:</td>
+                                              <td align="left" width="20%">
+												<select name="truckerTwo" class="form-control"  
+												  ng-model="orbfVm.orbf.truckerTwo" 
+												  ng-options="c.id as c.name for c in orbfVm.truckers">
+												  <option value="">--- Select ---</option>
+												</select>
+											  </td>
+                                              <td width="10%" valign="top"><strong>Tracking Link 2</strong>:</td>
+                                              <td width="40%" align="left">
+												<input name="orbf" ng-model="orbfVm.orbf.trackingLinkTwo" type="text" placeholder="Enter Tracking Link 2" class="form-control" maxlength="100" oninvalid="this.setCustomValidity('Enter Tracking Link 2');" onkeypress="this.setCustomValidity('');" />
+												</td>
+												 <td width="7%" valign="top"><strong>Status</strong>:</td>
+											  <td width="15%" align="left">
+												<input name="orbf" ng-model="orbfVm.orbf.statusTwo" type="text" placeholder="Delivery Status" class="form-control" />
+												</td>
+                                            </tr>
+                                            <tr>
+                                              <td width="8%" valign="top"><strong>Trucker 3</strong>:</td>
+                                              <td align="left" width="20%">
+												<select name=""truckerThree class="form-control"  
+												  ng-model="orbfVm.orbf.truckerThree" 
+												  ng-options="c.id as c.name for c in orbfVm.truckers">
+												  <option value="">--- Select ---</option>
+												</select>
+											  </td>
+                                              <td width="10%" valign="top"><strong>Tracking Link 3</strong>:</td>
+                                              <td width="40%" align="left">
+												<input name="orbf" ng-model="orbfVm.orbf.trackingLinkThree" type="text" placeholder="Enter Tracking Link 3" class="form-control" maxlength="100" oninvalid="this.setCustomValidity('Enter Tracking Link 3');" onkeypress="this.setCustomValidity('');" />
+											  </td>
+											   <td width="7%" valign="top"><strong>Status</strong>:</td>
+											  <td width="15%" align="left">
+												<input name="orbf" ng-model="orbfVm.orbf.statusThree" type="text" placeholder="Delivery Status" class="form-control" />
+												</td>
+                                            </tr>
+                                          </tbody>
+                                        </table></td>
+                                    </tr>
+                                    <tr>
+                                      <td valign="top" style="padding:5px;"><strong>EST Date</strong>:</td>
+                                      <td align="left" style="padding:5px;" colspan="5">
+										 <input name="estDate" type="text" class="form-control" placeholder="Est Date" uib-datepicker-popup="{{dateFormat}}" ng-model="orbfVm.orbf.estDate" is-open="orbfVm.estDate.opened" data-ng-click="orbfVm.estDatePicker()" datepicker-options="dateOptions" close-text="Close" close-on-date-selection="true" datepicker-append-to-body="true">								 
+									  </td>
+                                    </tr>
+                                    <tr>
+                                      <td valign="top" style="padding:5px;"><strong>Comments</strong>:</td>
+                                      <td align="left" style="padding:5px;" colspan="5">
+										<textarea class="form-control" placeholder="Enter Comment" maxlength="1000"  oninvalid="this.setCustomValidity('Enter Comment');" onkeypress="this.setCustomValidity('');" ng-model="orbfVm.orbf.comment"  />
+									 </td>
+                                    </tr>
+                                    <tr>
+                                      <th valign="top">&nbsp;</th>
+                                      <td align="left" colspan="2"><table width="100%">
+                                          <tbody>
+                                            <tr>
+                                            <td width="14%">
+												<input type="submit" value="Save ORBF" class="orbf-add-action reset-btn btn btn-info" >
+												<span id="orbf-add-spinner" style="display:none;">
+													<img src="images/loading.gif" />
+												</span>
+											</td>
+                                              <td width="86%"></td>
+                                            </tr>
+                                          </tbody>
+                                        </table></td>
+                                    </tr>
+                                  </tbody>
+                                </table></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- end id-form --></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+            <!-- .row -->
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'templates/footer.html'" ></div>

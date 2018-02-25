@@ -1,0 +1,86 @@
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+<div class="container-fluid">
+  <div class="clearfix">
+    <div class="panel panel-default" ng-init="takeVm.initTakeoffMasterInputs()">
+      <div class="panel-heading form-heading panel-heading-top">
+        <label>New Template</label>
+      </div>
+      <div class="panel-body new-tk-bg">
+        <div class="container">
+          <form ng-submit="takeVm.saveTakeoff();">
+          <form name="add_template" id="add_template" method="post" action="" class="formular">
+            <div class="theme-form" style="background:#6CF;">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> &nbsp; </div>
+                  <!-- .col -->
+                  <div class="col-lg-9 col-md-9 col-sm-8 pad_bot_30">
+                    <div class="form-group">
+                      <input value="Submit" class="submit-btn btn btn-primary" type="submit">
+                      &nbsp;&nbsp;&nbsp;
+                      <input value="Reset" class="reset-btn btn btn-warning" onclick="this.form.reset();" type="reset">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                </div>
+                <!-- .row -->
+                <!-- .row -->
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"><i class="star red">*</i>Template name:</span><span class="colon">:</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-9">
+                    <div class="form-group">
+                      <input class="form-control" name="template_name" id="template_name" value="" type="text">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                </div>
+                <!-- .row -->
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"><i class="star red">*</i>Email Subject</span><span class="colon">:</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-9">
+                    <div class="form-group">
+                      <input class="form-control" name="email_subject" id="email_subject" value="" type="text">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                </div>
+                <!-- .row -->
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"><i class="star red">*</i>HTML</span><span class="colon">:</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-9">
+                    <div class="form-group">
+                      <input class="form-control" name="email_subject" id="email_subject" value="" type="text">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                </div>
+                <!-- .row -->
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> &nbsp; </div>
+                  <!-- .col -->
+                  <div class="col-lg-9 col-md-9 col-sm-8 pad_top_30">
+                    <input name="add" value="add" type="hidden">
+                    <input value="Submit" class="submit-btn btn btn-primary" type="submit">
+                    &nbsp;&nbsp;&nbsp;
+                    <input value="Reset" class="reset-btn btn btn-warning" onclick="this.form.reset();" type="reset">
+                  </div>
+                  <!-- .col -->
+                </div>
+                <!-- .row -->
+              </div>
+              <!-- .container -->
+            </div>
+            <!-- .bg-d0e9f4 -->
+          </form>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="clear:both;height:50px;"></div>
+<div ng-include="'templates/footer.html'" ></div>

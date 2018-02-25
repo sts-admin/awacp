@@ -1,0 +1,116 @@
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+<div class="container-fluid" style="margin-top:-10px;"  ng-init="awfInvVm.generateReport();">
+  <div class="clearfix">&nbsp;</div>
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xss-12 dashboard-content">
+          <h1>View AWF Orders</h1>
+        </div>
+        <!-- .col -->
+        <div style="text-align:center; font-size:12px;" class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xss-12 dashboard-content">
+          <p class="line-height visible-xs-text-center">Total rows found for Year - 136</p>
+        </div>
+        <!-- .col -->
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xss-12 dashboard-content"> <a class="btn btn-primary width-full" onclick="ClearSearch('aw_inventory/aworders');" href="javascript:void(0);">Clear Search</a> </div>
+        <!-- .col -->
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xss-12 dashboard-content text-right"> Per page Rows
+         <select ng-class="styledselect_pages" style="outline:none;"
+			ng-model="awfInvVm.pageSize" 
+			ng-options="size for size in awfInvVm.pageSizeList" ng-change="awfInvVm.setCurrentPageSize('AWF_ORDERS', awfInvVm.pageSize);" >
+		</select>
+        </div>
+        
+        <div class="col-lg-12 col-md-12 col-sm-12"><br>
+          <ul uib-pagination total-items="awfInvVm.totalItems" items-per-page = "awfInvVm.pageSize" ng-model="awfInvVm.currentPage" ng-change="awfInvVm.orderPageChanged()">
+          </ul>
+        </div>
+       
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12"></div>
+      </div>
+      <div id="contents" class="row">
+        <div style="font-size:12px;" class="col-lg-4 pad_bot_30"> <span style="display:none;" class="found_row"> Total rows found - 7,541 </span> </div>
+        <div align="center" class="col-lg-3 pad_bot_30"> <span class="loading_div" style="display:none;"> </span> </div>
+       
+        <!-- .col -->
+        <div class="col-lg-12">
+          <form method="post" action="" class="table-container" name="aw_inventory_view_form" id="aw_inventory_view_form">
+            <input type="hidden" value="" name="color" id="color">
+            <table width="100%" cellspacing="0" cellpadding="0" border="1" class="table-responsive theme-table">
+              <thead>
+                <tr style="background:#093;">
+                  <td align="center"><input type="text" value="" name="invntry_date_ordered" class="form-control form-control2 datepicker"></td>
+                  <td align="center"><input type="text" value="" name="invntry_ordernumber" class="form-control form-control2 searchtxt"></td>
+                  <td align="center"><input type="text" value="" name="invntry_custname" class="form-control form-control2 searchtxt"></td>
+                  <td align="center"><input type="text" value="" name="invntry_qtyordered" class="form-control form-control2 searchtxt"></td>
+                  <td align="center"><input type="text" value="" name="invntry_size" class="form-control form-control2 searchtxt"></td>
+                  <td align="center"><input type="text" value="" name="invntry_netprice" class="form-control form-control2 searchtxt"></td>
+                  <td align="center"><input type="text" value="" name="invntry_billableprice" class="form-control form-control2 searchtxt"></td>
+                  <td align="center"><input type="text" value="" name="invntry_itemdesc" class="form-control form-control2 searchtxt"></td>
+                  <td align="center"><input type="text" value="" maxlength="2" name="invntry_usercode" class="form-control form-control2 searchtxt"></td>
+                  <td align="center"><input type="text" value="" name="invntry_trackngnum" class="form-control form-control2 searchtxt"></td>
+                  <td align="center"><input type="text" value="" name="invntry_estdate" class="form-control form-control2 datepicker"></td>
+                  <td align="center"><input type="text" value="" name="invntry_comments" class="form-control form-control2 searchtxt"></td>
+                  <!--<td align="center" ></td>-->
+                </tr>
+                <tr style="background:#1E7D44; color:#FFF;">
+                  <td align="center"><b>Date Ordered</b></td>
+                  <td align="center"><b>#Order</b></td>
+                  <td align="center"><b>Customer</b></td>
+                  <td align="center"><b>Qty.</b></td>
+                  <td align="center"><b>Size</b></td>
+                  <td align="center"><b>List Price</b></td>
+                  <td align="center" style="color:#FFF; padding:15px; width:100px;"><b>Billable Cost</b></td>
+                  <td align="center"><b>Description</b></td>
+                  <td align="center"><b>User code</b></td>
+                  <td align="center"><b>#Tracking</b></td>
+                  <td align="center"><b>Est Date</b></td>
+                  <td align="center"><b>Comments</b></td>
+                  <!--<td align="center"><b>Image</b></td>-->
+                </tr>
+              </thead>
+              <tbody  ng-repeat="ob in awfInvVm.orderBooks track by $index">
+                <tr bgcolor="#FFCCCC">
+                  <td align="center" style="color:#990000; font-size:16px;" colspan="12"></td>
+                </tr>
+                <tr bgcolor="#FFCCCC" ng-repeat="item in ob.invItems track by $index">
+                  <td align="center">{{ob.dateCreated | date:'shortDate'}}</td>
+				  <td align="center"><a style="color:#039;" href ui-sref="premium-order({inventory:'AWF', orderBookId:ob.id})" target="_blank">{{ob.orderBookNumber}}</a></td>
+                  <td align="center">{{ob.contractorName}}</td>
+                  <td align="center">{{item.orderQty}}</td>
+                  <td align="center">{{item.size}}</td>
+                  <td align="center">{{item.listPrice | currency}}</td>
+                  <td align="center">{{item.billableCost | currency}}</td>
+                  <td align="left">{{item.itemDescription}}</td>
+                  <td align="center">{{item.createdByUserCode}}</td>
+                  <td align="center"><a style="color:#039;" target="_blank" href="">SHPD 1Z1536630351068796</a><br>
+                    Freight: $7.70<br>
+                    <a target="_blank" style="color:#039;" href ui-sref="tracking({invOrderBookId:item.bookId, invOrderItemId:item.id, invType:'awf', invOrderBookNumber:ob.orderBookNumber})">
+						[...]
+					</a>
+                  <td align="center">{{ob.estDate | date:'shortDate'}}</td>
+                  <td align="center"> {{ob.comment}}</td>
+                </tr>
+                <tr bgcolor="#FFCCCC">
+                  <td align="center" style="color:#990000; font-size:16px;" colspan="12"> Net Cost for this order is: {{ob.netCost | currency}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+        <!-- .col -->
+        <div style="font-size:12px;" class="col-lg-4 pad_top_30"> <span style="display:none;" class="found_row"> Total rows found - 7,541 </span> </div>
+        <div align="center" class="col-lg-3 pad_bot_30"> <span class="loading_div" style="display:none;"> </span> </div>
+      
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 pull-right">
+      <ul uib-pagination total-items="awfInvVm.totalItems" items-per-page = "awfInvVm.pageSize" ng-model="awfInvVm.currentPage" ng-change="awfInvVm.orderPageChanged()">
+      </ul>
+    </div>
+  </section>
+</div>
+<div ng-include="'templates/footer.html'" ></div>

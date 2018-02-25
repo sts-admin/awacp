@@ -1,0 +1,281 @@
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+<div class="container-fluid">
+  <div class="clearfix">
+    <div class="panel panel-default" ng-init="obVm.initOrderBookMasterInputs()">
+      <div class="panel-heading form-heading panel-heading-top">
+        <label>Order Book Report Input</label>
+		<a id="form_display" class="btn btn-success pull-right" ng-click="obVm.toggleReportFormVisibility();" href >{{obVm.showReportForm?"Hide Report Form":"Show Report Form"}}</a> 
+      </div>
+      <div class="panel-body new-tk-bg">
+        <form ng-submit="obVm.rememberReportQueryParams();"  ng-show="obVm.showReportForm">
+        <!-- .row -->
+        <section>
+          <!-- .container -->
+          <form class="formular" action="" method="post" id="orderbook_reports" name="orderbook_reports">
+            <div class="bg-FFFAEB theme-form">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"><u>Between Two Dates</u></span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-2 visible-xs-padding-right"> <span class="new-take-off-title">From:</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-3 col-md-3 col-sm-2">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="From Date" uib-datepicker-popup="{{dateFormat}}" ng-model="obVm.orderBook.fromDate" is-open="obVm.rptFromDate.opened" data-ng-click="obVm.rptFromDatePicker()" datepicker-options="dateOptions" close-text="Close" close-on-date-selection="true" datepicker-append-to-body="true">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-2 visible-xs-padding-right"> <span class="new-take-off-title">To:</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-3 col-md-3 col-sm-2">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="To Date" uib-datepicker-popup="{{dateFormat}}" ng-model="obVm.orderBook.toDate" is-open="obVm.rptToDate.opened" data-ng-click="obVm.rptToDatePicker()" datepicker-options="dateOptions" close-text="Close" close-on-date-selection="true" datepicker-append-to-body="true">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <hr>
+                  </div>
+                  <!-- .col -->
+                </div>
+                <!-- .row -->
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">Year:</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <div class="form-group">
+                      <select class="form-control" ng-model="obVm.orderBook.year" 
+				  ng-options="y.id as y.val for y in obVm.rptYearRange">
+                        <option value="">--- Select ---</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-1 col-xs-12"> <span class="new-take-off-title">Salesman:</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <div class="form-group">
+                      <select name="salesPersonId"   class="form-control"   
+				  ng-model="obVm.orderBook.salesPersonId" 
+				  ng-options="user.id as user.customName for user in obVm.users" >
+                        <option value="">--- Select ---</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-1 col-xs-12"> <span class="new-take-off-title">Usercode:</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <div class="form-group">
+                      <select name="userCode"   class="form-control"   
+				  ng-model="obVm.orderBook.createdByUserCode" 
+				  ng-options="user.userCode as user.userCode for user in obVm.users" >
+                        <option value="">--- Select ---</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- .col -->
+                </div>
+                <!-- .row -->
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">Factory</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group">
+                      <select name="factory" class="form-control"  
+			  ng-model="obVm.orderBook.factoryType" 
+			  ng-options="fac.id as fac.title for fac in obVm.orderCategories">
+                        <option value="">--- Select ---</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">Contractor</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group">
+                      <select name="factory" class="form-control"  
+			  ng-model="obVm.orderBook.contractorId" 
+			  ng-options="c.id as c.name for c in obVm.contractors">
+                        <option value="">--- Select ---</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">c/o Shipto</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group">
+                      <select name="factory" class="form-control"  
+				  ng-model="obVm.orderBook.shipToId" 
+				  ng-options="s.id as s.shipToAddress for s in obVm.shiptos">
+                        <option value="">--- Select ---</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- .col -->
+                </div>
+				 <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">AWACP PO#</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Order Book Number" ng-model="obVm.orderBook.orderBookNumber">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">Est Date</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group">
+					  <input type="text" class="form-control" placeholder="Est Date" uib-datepicker-popup="{{dateFormat}}" ng-model="obVm.orderBook.estDate" is-open="obVm.rptEstDate.opened" data-ng-click="obVm.rptEstDatePicker()" datepicker-options="dateOptions" close-text="Close" close-on-date-selection="true" datepicker-append-to-body="true">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">ORBF</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group"><input type="text" class="form-control" placeholder="ORBF" ng-model="obVm.orderBook.orbf">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                </div>
+				 <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">Job ID</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Job ID" ng-model="obVm.orderBook.jobOrderNumber">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">Comments / Model#</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group">
+					  <input type="text" class="form-control" placeholder="Comments" ng-model="obVm.orderBook.comment" >
+                    </div>
+                  </div>                
+                </div>
+				
+				  <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">Attn</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Attn" ng-model="obVm.orderBook.attn">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">Job Name</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group">
+					 <input type="text" class="form-control" placeholder="Job Name" ng-model="obVm.orderBook.jobName">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12"> <span class="new-take-off-title">Job Address</span> </div>
+                  <!-- .col -->
+                  <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                    <div class="form-group"><input type="text" class="form-control" placeholder="Job Address" ng-model="obVm.orderBook.jobAddress">
+                    </div>
+                  </div>
+                  <!-- .col -->
+                </div>
+				
+                <!-- .row -->
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <hr>
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-12 col-md-12 col-sm-12 pad_top_301">
+                    <input type="submit" class="submit-btn btn btn-primary" value="Generate" id="orderBook-rpt-btn">
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="reset" onclick="this.form.reset();" class="reset-btn btn btn-info" value="Reset">
+                    <input type="hidden" value="searched" name="searched">
+                  </div>
+                  <!-- .col -->
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <hr>
+                  </div>
+                  <!-- .col -->
+                </div>
+                <!-- .row -->
+              </div>
+              <!-- .container -->
+            </div>
+            <!-- .bg-d0e9f4 -->
+          </form>
+        </section>
+        <!-- .row -->
+        <!-- .row -->
+        <div class="row checkrow"> </div>
+        <!-- .row -->
+        </form>
+		<span id="orderBook-rpt-spinner" style="display:none;">
+			<img src="images/loading.gif" />
+		</span>
+        <div class="col-lg-12" ng-show="obVm.report.mode === 'output' ">
+          <form class="table-container" action="">
+            <table class="table-responsive theme-table" width="100%" cellspacing="0" cellpadding="0" border="1">
+              <thead>
+                <tr style="background:#9B6944; color:#FFF;">
+                  <td align="center">Date</td>
+                  <td align="center" style="color:#FFF; background:#7D3549;">Job ID</td>
+                  <td align="center">AWACP PO#</td>
+                  <td align="center">ORBF</td>
+                  <td align="center">EST</td>
+                  <td align="center">Contractor Name</td>
+                  <td align="center">ShipTo</td>
+                  <td align="center">Job Name</td>
+                  <td align="center">Job Address</td>
+                  <td align="center">SP</td>
+                  <td align="center">UC</td>
+                  <td align="center">Comments<br>
+                    Model Number</td>
+                </tr>
+              </thead>
+              <tbody>
+               <tr height="25" ng-repeat="orderBook in obVm.orderBooks track by $index">  
+                      <td align="center">{{orderBook.dateCreated | date:'shortDate'}}</td>
+                      <td align="center">{{orderBook.jobOrderNumber}}</td>
+                      <td align="center">
+						<a href ui-sref="orderbook-edit({id:orderBook.id})">
+							{{orderBook.orderBookNumber}}
+						</a>						
+					  </td>
+					  <td align="center">
+						<span ng-if="orderBook.cancelled" style="color:red;">
+							CANCELLED
+						</span>
+						<span ng-if="!orderBook.cancelled">
+							<span ng-if="orderBook.orbf">
+								<a href ui-sref="orbf-edit({orbfOrderBookId:orderBook.id, orbfJobOrderId:orderBook.jobId})">{{orderBook.orbf}}</a>								
+							</span>
+							<span ng-if="!orderBook.orbf">
+								<a href ui-sref="orbf-edit({orbfOrderBookId:orderBook.id, orbfJobOrderId:orderBook.jobId})">[Enter ORBF]</a>
+							</span>
+						</span>
+					  </td>
+                      <td align="center">{{orderBook.estDate | date:'shortDate'}}</td>
+					  <td align="center">{{orderBook.contractorName}}</td>
+                      <td align="center">{{orderBook.shipToName}}</td>
+                      <td align="center">{{orderBook.jobName}}</td>
+                      <td align="center">{{orderBook.jobAddress}}</td>
+                      <td align="center"> {{orderBook.salesPersonName}} </td>
+                      <td align="center"> {{orderBook.createdByUserCode}} </td>
+                      <td align="center">{{orderBook.comment}}</td>
+                    </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="clear:both;height:50px;"></div>
+<div ng-include="'templates/footer.html'" ></div>

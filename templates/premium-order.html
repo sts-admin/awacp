@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+.lining {
+	border-bottom:1px solid #000000;
+}
+.style35 {
+	font-size: xx-large;
+	font-weight: bold;
+	color: #FF0000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+<body>
+<table border="0" style="width:100%; font-family:Verdana, Geneva, sans-serif;">
+  <tbody>
+    <tr>
+      <td colspan="3" align="center" style="background:#EEE;"><img src="./images/big_logo.png"></td>
+    </tr>
+    <tr>
+      <td style="background:#EEE; width:20%; font-size:12px;" align="left">
+		<b>PH. #</b> <br>
+       {{pOrderVm.appSetting.phoneNumber}}
+		</td>
+      <td style="background:#EEE; width:53%; font-size:13px;" align="center">{{pOrderVm.appSetting.officeAddress}}</td>
+      <td style="background:#EEE; width:27%; font-size:12px;" align="right"><b>Fax #</b><br>
+        {{pOrderVm.appSetting.faxNumber}}</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="background:#EEE; width:100%;" align="left"><table border="0" style="width:100%;">
+          <tbody>
+            <tr>
+              <td align="left" style="background:#EEE; width:50%;"><span style="font-size:12px;">Website: {{pOrderVm.appSetting.frontWebsite}}</span></td>
+              <td style="background:#EEE; width:50%;" align="right"><span style="font-size:12px;">Email: {{pOrderVm.appSetting.emailAddress}}</span></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+    <tr>
+      <td colspan="3"><hr></td>
+    </tr>
+    <tr>
+      <td colspan="3" valign="top">
+		<input ng-click="pOrderVm.toggleEmailOption();" class="btn btn-primary" type="button" value="{{pOrderVm.showHideCaption}}" />
+		
+		<form name="frmemail" id="frmemail" class="formular" method="post"  ng-show="pOrderVm.showEmailOption" ng-submit="pOrderVm.sendEmail(pOrderVm.jobOrder.id);">          
+          <table width="100%" id="cust_form_email" style="display: block;">
+            <tbody>
+              <tr>
+                <td colspan="6">&nbsp;</td>
+              </tr>
+              <tr>
+                <td width="20%" align="left" valign="top">&nbsp;</td>
+                <td width="40%" align="left" valign="top"><font color="#990000">Customer email:</font></td>
+                <td width="40%" align="left" valign="top"><span class="noheight">
+                  <input type="text" class="inp-form" ng-model="pOrderVm.salesPeron.emailId">
+                  </span></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td align="left" valign="top" nowrap="nowrap"><font color="#990000">And/Or Select Email:</font></td>
+                <td align="left" valign="top">
+					<select class="form-control"
+					  ng-model="pOrderVm.salesPeron.id" 
+					  ng-options="user.id as user.customName for user in pOrderVm.users">
+					  <option value="">--- Select ---</option>
+					</select>
+				 </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td align="left" valign="top">
+				<input name="submit" type="submit" value="Email This Order"></td>
+              </tr>
+            </tbody>
+          </table>
+        </form></td>
+    </tr>
+    <tr>
+      <td colspan="3"><hr></td>
+    </tr>
+    <tr>
+      <td colspan="3" valign="top"><table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:13px;">
+          <tbody>
+            <tr>
+              <td></td>
+              <td colspan="6"><center>
+                  <span class="style35">{{pOrderVm.orderType}} PREMIUM ORDER</span> <br>
+                  <center>
+                    <font size="+3" color="RED">COTTONE</font>
+                  </center>
+                </center></td>
+            </tr>
+            <tr>
+              <td colspan="7">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="5%">&nbsp;</td>
+              <td width="18%" align="left" valign="top"><strong>JOB ID</strong></td>
+              <td width="1%">:</td>
+              <td width="33%" align="left" valign="top">{{pOrderVm.jobOrder.jobOrderNumber}}</td>
+              <td width="12%" align="left" valign="top"><strong>ORDER DATE</strong></td>
+              <td width="1%">:</td>
+              <td width="30%" align="left" valign="top">{{pOrderVm.jobOrder.dateCreated | date:'shortDate'}}</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td align="left" valign="top"><strong><span style="font-size:18px;">WEISS PO:</span></strong></td>
+              <td>:</td>
+              <td align="left" valign="top" colspan="4"><span style="font-size:18px;">{{pOrderVm.jobOrder.po}}</span></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td align="left" valign="top"><strong>CUSTOMER NAME</strong></td>
+              <td>:</td>
+              <td align="left" valign="top" colspan="4">{{pOrderVm.jobOrder.contractorName}}</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td align="left" valign="top"><strong>SHIP TO, C/O </strong></td>
+              <td>:</td>
+              <td align="left" valign="top" colspan="4">{{pOrderVm.jobOrder.shipToName}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td align="left" valign="top"><strong>ATTN :</strong></td>
+              <td>:</td>
+              <td align="left" valign="top" colspan="4">{{pOrderVm.jobOrder.attn}}</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td align="left" valign="top"><strong>JOB NAME</strong></td>
+              <td>:</td>
+              <td align="left" valign="top" colspan="4">{{pOrderVm.jobOrder.jobName}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td align="left" valign="top"><strong>JOB ADDRESS</strong></td>
+              <td>:</td>
+              <td align="left" valign="top" colspan="4">{{pOrderVm.jobOrder.jobAddress}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td align="left" valign="top"><strong>USERCODE</strong></td>
+              <td>:</td>
+              <td align="left" valign="top" colspan="4">{{pOrderVm.jobOrder.createdByUserCode}}</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td align="left" valign="top"><strong>SALESMAN</strong></td>
+              <td>:</td>
+              <td align="left" valign="top">{{pOrderVm.jobOrder.salesPersonName}}</td>
+              <td align="left" valign="top"><strong>SHIP DATE</strong></td>
+              <td>:</td>
+              <td align="left" valign="top">07/26/17</td>
+            </tr>
+            <tr>
+              <td colspan="7">&nbsp;</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="6"><table width="90%" border="1" style="font-size:12px;">
+                  <tbody>
+                    <tr bgcolor="#DADADA">
+                      <th width="17%" scope="row">Quantity</th>
+                      <th width="17%" scope="row">Size</th>
+                      <th width="66%" scope="row">Item</th>
+                    </tr>
+                    <tr ng-repeat="item in pOrderVm.jobOrder.invItems track by $index">
+                      <th scope="row">{{$index + 1 }}</th>
+                      <td>{{item.size}}</td>
+                      <td>{{item.itemDescription}}</td>
+                    </tr>
+                  </tbody>
+                </table></td>
+            </tr>
+            <tr>
+              <td colspan="7"><hr></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="6"><strong>SHIPPING DETAILS: </strong>{{pOrderVm.jobOrder.shipmentStatus}}</td>
+            </tr>
+            <tr>
+              <td colspan="7">&nbsp;</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="3"> For Pick-up orders only: <br>
+                Signature: ___________________________________________ <br>
+                Date: ____________________ </td>
+              <td colspan="3" valign="bottom"> Checked By: ____________________ </td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+    <tr>
+      <td colspan="3"><hr></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center" style="font-size:11px; color:#999;">ALBERT WEISS AIR CONDITIONING PRODUCTS INC. Copyright 2013. All rights reserved.</td>
+    </tr>
+  </tbody>
+</table>
+<script> function ShowForm( val) {	if( val == 'show')	{	document.getElementById('cust_form_email').style.display = 'block';	document.getElementById('show_form_link').style.display = 'none';	}	else if(val == 'none')	{	document.getElementById('cust_form_email').style.display = 'none';	document.getElementById('show_form_link').style.display = 'block';	} } </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+<div class="container-fluid" style="margin-top:-10px;">
+	<div class="clearfix">
+		<div class="panel panel-default shadow" ng-init="gcVm.getGcs();">
+			<div class="panel-heading form-heading panel-heading-top">
+				<label>Manage General Contractors</label>	
+				<span class="pull-right"><a href ui-sref="gc-add" >Add GC</a></span>
+			</div>
+			<div class="panel-body">
+				<div style="text-align:right;">
+                
+				<div class="col-lg-2 col-md-2 col-sm-6 per-page-row text-left">
+					Per page Rows 
+					<select ng-class="styledselect_pages" style="outline:none;"
+						ng-model="gcVm.pageSize" 
+						ng-options="size for size in gcVm.pageSizeList" ng-change="gcVm.setCurrentPageSize(gcVm.pageSize);" >
+					</select>
+			</div>
+<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 dashboard-content"> <a href="javascript:void(0);" onclick="ClearSearch('engineers');" class="btn btn-primary width-full">Clear Search</a> </div>
+					<ul uib-pagination total-items="gcVm.totalItems" items-per-page = "gcVm.pageSize" ng-model="gcVm.currentPage" ng-change="gcVm.pageChanged()"></ul>
+				</div>
+  
+				<!-- .row -->
+				<div class="row" id="contents">
+				 
+				  <!-- .col -->
+				  <div class="col-lg-12">
+					<form id="users_view_form" class="table-container" action="" method="post">
+					  <div class="table-container">
+						<table border="1" width="100%" cellpadding="0" cellspacing="0" class="table-responsive theme-table">
+						  <thead>
+                          <tr style="background:#399;">
+                      <td class="center">&nbsp;</td>
+                      <td class="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center"><input type="text" class="searchtxt form-control-2 form-control" name="takeoff_quoteid" value=""></td>
+                      <td align="center">&nbsp;</td>
+                    </tr>
+                    
+							<tr style="background:#759DC5;">
+							  <td style="padding:5px; color:#FFF;" align="center">S. No.</td>
+							  <td style="padding:5px; color:#FFF;" align="center">Name</td>
+                              <td style="padding:5px; color:#FFF;" align="center">Address</td>
+							  <td style="padding:5px; color:#FFF;" align="center">City</td>
+							  <td style="padding:5px; color:#FFF;" align="center">State</td>
+							  <td style="padding:5px; color:#FFF;" align="center">Zip</td>
+							  <td style="padding:5px; color:#FFF;" align="center">Phone</td>
+							  <td style="padding:5px; color:#FFF;" align="center">Fax</td>
+							  <td style="padding:5px; color:#FFF;" align="center">Email</td>
+							  <td style="padding:5px; color:#FFF;" align="center">Website</td>
+							  <td style="padding:5px; color:#FFF;" align="center">SP</td>
+							  <td style="padding:5px; color:#FFF;" align="center">UC</td>
+							  <td style="padding:5px; color:#FFF;" align="center">UC2</td>
+							  <td style="padding:5px; color:#FFF;" filter="false" align="center">Actions</td>
+							</tr>
+						  </thead>
+						  <tbody>
+						  <tr id="user_90" height="25" ng-repeat="contractor in gcVm.generalContractors track by $index">
+							  <td align="center">{{$index + 1}}</td>
+							  <td>{{contractor.name}}</td>
+                              <td>{{contractor.address}}</td>
+							  <td>{{contractor.city}}</td>
+							  <td align="center">{{contractor.state}}</td>
+							  <td align="center">{{contractor.zip}}</td>
+							   <td align="center">{{contractor.phone}}</td>
+							    <td align="center">{{contractor.fax}}</td>
+							  <td>{{contractor.email}}</td>
+							    <td>{{contractor.website}}</td>
+							  <td align="center">{{contractor.salesPersonName}}</td>
+							   <td align="center">{{contractor.createdByUserCode}}</td>
+							    <td align="center">{{contractor.updatedByUserCode}}</td>
+							  <td align="center">&nbsp; <a ui-sref="gc-edit({id:contractor.id})"> <img src="images/file_edit.png" title="edit GC" border="0"></a> &nbsp;&nbsp; <img src="images/file_delete.png" style="cursor:pointer;" title="delete GC" ng-click="gcVm.deleteGc(contractor.id);" border="0"> &nbsp;&nbsp; </td>
+							</tr>					
+						</table>
+						</td>
+						</tr>
+						</tbody>
+						</table>
+					  </div>
+					</form>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</div>
+</div>
+
+<div ng-include="'templates/footer.html'" ></div>

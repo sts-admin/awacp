@@ -1,0 +1,165 @@
+
+<!-- ************************************************************************************************************************************-->
+
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+
+<div class="container-fluid">
+	<div class="clearfix">
+		<div class="panel panel-default" ng-init="engVm.initEngineerMasterInputs()">
+				<div class="panel-heading form-heading panel-heading-top">
+					<label>{{engVm.action}} New Engineer</label>				
+				</div>
+				<div class="panel-body bg-D2FFDE">
+					<form ng-submit="engVm.addEngineer();">
+						<!-- .row -->
+						<div class="row">
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> 
+							<span class="form-label">
+								Engineer Name
+							</span>
+							<i class="star red">*</i>
+							<span class="colon">:</span> 
+						</div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" placeholder="Engineer Name" class="form-control" maxlength="80" oninvalid="this.setCustomValidity('Enter Engineer Name');" onkeypress="this.setCustomValidity('');" ng-model="engVm.engineer.name" ng-required="true" autofocus />
+							</div>
+						  </div>
+						   <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> 
+							<span class="form-label">Email ID</span>
+							<span class="colon">:</span> </div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="email" class="form-control" placeholder="Enter Email" maxlength="100" oninvalid="this.setCustomValidity('Enter Email');" onkeypress="this.setCustomValidity('');" ng-model="engVm.engineer.email" />
+							</div>
+						  </div>
+						    <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> 
+							<span class="form-label">Sales Person</span>
+							<i class="star red">*</i>
+							<span class="colon">:</span> 
+						</div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							 <select class="form-control"
+								  ng-model="engVm.engineer.salesPerson" 
+								  ng-options="user.id as user.customName for user in engVm.users" ng-required = "true">
+								  <option value="">--- Select ---</option>
+								</select>
+							</div>
+						  </div>
+						
+						  <!-- .col -->
+						  <!-- .col -->
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right">
+							<span class="form-label">Address</span>
+							<span class="colon">:</span> 
+						</div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Enter Address" maxlength="100" oninvalid="this.setCustomValidity('Enter Address');" onkeypress="this.setCustomValidity('');" ng-model="engVm.engineer.address" />
+							</div>
+						  </div>
+						  <!-- .col -->
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right">
+						  <span class="form-label">City</span>
+						  <span class="colon">:</span> 
+						 </div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Enter City" maxlength="100" oninvalid="this.setCustomValidity('Enter City');" onkeypress="this.setCustomValidity('');" ng-model="engVm.engineer.city" />
+							</div>
+						  </div>
+
+						 
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right">
+					  <span class="form-label">State</span>
+					  <span class="colon">:</span> 
+					 </div>
+					  <!-- .col -->
+					  <div class="col-lg-10 col-md-10 col-sm-9">
+						<div class="form-group">
+						  <input type="text" class="form-control" placeholder="Enter State" maxlength="100" oninvalid="this.setCustomValidity('Enter State');" onkeypress="this.setCustomValidity('');" ng-model="engVm.engineer.state" />
+						</div>
+					  </div>
+
+					   <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="form-label">Zip</span><span class="colon">:</span> </div>
+					  <!-- .col -->
+					  <div class="col-lg-10 col-md-10 col-sm-9">
+						<div class="form-group">
+						  <input type="text" class="form-control" placeholder="Enter Zip" maxlength="20" ng-model="engVm.engineer.zip" />
+						</div>
+					  </div>
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="form-label">Phone</span><span class="colon">:</span> </div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Enter Contact No" maxlength="20" ng-model="engVm.engineer.phone"   />
+							</div>
+						  </div>
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="form-label">Fax</span><span class="colon">:</span> </div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" class="form-control" maxlength="25" placeholder="Enter Fax No" ng-model="engVm.engineer.fax" />
+							</div>
+						  </div>
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="form-label">Website</span><span class="colon">:</span> </div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Enter Website URL" maxlength="100" ng-model="engVm.engineer.website" />
+							</div>
+						  </div>
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="form-label">Comment</span><span class="colon">:</span> </div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Enter Comment" maxlength="100" ng-model="engVm.engineer.comment" />
+							</div>
+						  </div>
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="form-label">Basic Spec</span><span class="colon">:</span> </div>
+						  <!-- .col -->
+						  <div class="col-lg-10 col-md-10 col-sm-9">
+							<div class="form-group">
+							  <input type="text" class="form-control" placeholder="Enter Basic Spec" maxlength="100" ng-model="engVm.engineer.basicSpec" />
+							</div>
+						  </div>
+						 
+						  <!-- .col -->
+						  <!-- .col -->
+						 
+						</div>
+						<!-- .row -->
+					   
+						<!-- .row -->
+						<div class="row checkrow">
+						  <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> &nbsp; </div>
+						  <!-- .col -->
+						  <div class="col-lg-9 col-md-9 col-sm-8 pad_top_30">
+							<input type="submit" value="{{engVm.action}} Engineer" class="actions submit-btn btn btn-primary">
+							&nbsp;&nbsp;
+							<input type="reset" value="Reset" class="actions reset-btn btn btn-warning">
+							&nbsp;&nbsp;
+							<input type="button" value="Go Back" class="actions reset-btn btn btn-info" ng-click="engVm.cancelEngineerAction();">
+							<span class="spinner" style="display:none;">
+								<img src="images/loading.gif" />
+							</span>
+						  </div>
+						  <!-- .col -->
+						</div>
+						<!-- .row -->
+					</form>
+				</div>
+			</div>
+	</div>
+</div>
+<div style="clear:both;height:50px;"></div>
+<div ng-include="'templates/footer.html'" ></div>
+
+

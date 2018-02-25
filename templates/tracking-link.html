@@ -1,0 +1,128 @@
+<div ng-include="'templates/header.html'"></div>
+<div ng-include="'templates/main-menu.html'"></div>
+<div class="container-fluid">
+
+<section>
+  <!-- .container -->
+  <form class="formular" name="trackingForm" ng-submit="trackingVm.saveTracking();">
+    <div class="theme-form quote-bg">
+      <div class="container">
+		<div class="row">
+			<div class="col-lg-10 col-md-10 col-sm-9"> <h4>Tracking Detail (Order No: {{trackingVm.tracking.orderBookNumber}})</h4></div>
+			<div class="col-lg-10 col-md-10 col-sm-9"> <span class="new-take-off-title"><span style="font-size:12px;">Note:- <i>Make sure that the Tracking Number & the Freight charges are entered before you update the order.</i></span> </div>
+		</div>
+        <!-- .row -->
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"><span style="font-size:14px;">Trucker 1:</span> </div>
+          <!-- .col -->
+          <div class="col-lg-10 col-md-10 col-sm-9">
+            <div class="form-group">
+			 <select class="form-control"
+			  ng-model="trackingVm.tracking.truckerOneId" 
+			  ng-options="tone.id as tone.name for tone in trackingVm.truckers" ng-required = "true">
+			  <option value="">--- Select ---</option>
+			</select>
+            </div>
+          </div>
+          <!-- .col -->
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"> <span style="font-size:14px;">Tracking No (Trucker 1):</span></div>
+          <!-- .col -->
+          <div class="col-lg-10 col-md-10 col-sm-9">
+            <div class="form-group">
+              <input type="text" ng-model="trackingVm.tracking.trackingNumberOne" ng-required = "true" class="form-control">
+            </div>
+          </div>
+         
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"><strong>Freight(Trucker 1):</strong>$</span> </div>
+          <!-- .col --> 
+		  
+          <div class="col-lg-10 col-md-10 col-sm-9">
+            <div class="form-group">
+              <input type="text" ng-model="trackingVm.tracking.freightOne" ng-required = "true" class="form-control">
+            </div>
+          </div>
+          <!-- .col -->
+		  
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"> <span style="font-size:14px;">Trucker 2: </span></div>
+          <!-- .col -->
+          <div class="col-lg-10 col-md-10 col-sm-9">
+            <div class="form-group">
+              <select class="form-control"
+			  ng-model="trackingVm.tracking.truckerTwoId" 
+			  ng-options="ttwo.id as ttwo.name for ttwo in trackingVm.truckers">
+			  <option value="">--- Select ---</option>
+			</select>
+            </div>
+          </div>
+          <!-- .col -->
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"> <span style="font-size:14px;">Tracking No (Trucker 2):</span> </div>
+          <!-- .col -->
+          <div class="col-lg-10 col-md-10 col-sm-9">
+            <div class="form-group">
+              <input type="text" ng-model="trackingVm.tracking.trackingNumberTwo" class="form-control">
+            </div>
+          </div>
+          <!-- .col -->
+          <div style="clear:both;"></div>
+          <div class="col-lg-12 col-md-2 col-sm-3 visible-xs-padding-right">&nbsp;</div>
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"> <strong>Freight (Trucker 2):</strong>$ </span> </div>
+          <!-- .col -->
+          <div class="col-lg-10 col-md-10 col-sm-9">
+            <div class="form-group">
+              <input type="text" ng-model="trackingVm.tracking.freightTwo" class="form-control">
+            </div>
+          </div>
+          <!-- .col -->
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"> <span style="font-size:14px;">Trucker 3:</span></div>
+          <!-- .col -->
+          <div class="col-lg-10 col-md-10 col-sm-9">
+            <div class="form-group">
+              <select class="form-control"
+			  ng-model="trackingVm.tracking.truckerThreeId" 
+			  ng-options="tthree.id as tthree.name for tthree in trackingVm.truckers" >
+			  <option value="">--- Select ---</option>
+			</select>
+            </div>
+          </div>
+          <!-- .col -->
+          <div style="clear:both;"></div>
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"> <span style="font-size:14px;">Tracking No (Trucker 3):</span></div>
+          <!-- .col -->
+          <div class="col-lg-10 col-md-10 col-sm-9">
+            <div class="form-group">
+              <input type="text" ng-model="trackingVm.tracking.freightThree" class="form-control">
+            </div>
+          </div>
+          <!-- .col -->
+          <div style="clear:both;"></div>
+          <div class="col-lg-12 col-md-2 col-sm-3 visible-xs-padding-right">&nbsp;</div>
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> <span class="new-take-off-title"> <strong>Freight (Trucker 3):</strong>$ </span> </div>
+          <!-- .col -->
+          <div class="col-lg-10 col-md-10 col-sm-9">
+            <div class="form-group">
+              <input type="text" ng-model="trackingVm.tracking.freightThree" class="form-control">
+            </div>
+          </div>
+          <!-- .col --> 
+		</div>
+        <!-- .row -->
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="col-lg-2 col-md-2 col-sm-3 visible-xs-padding-right"> &nbsp; </div>
+          <div class="col-lg-10 col-md-10 col-sm-9 col-lg-offset-2 col-md-offset-2 col-sm-offset-3 col-lg-offset-0 col-md-offset-0">
+            <input type="submit" class="actions submit-btn btn btn-primary" value="Save Tracking Detail">
+			<span class="spinner" style="display:none;">
+				<img src="images/loading.gif" />
+			</span>
+          </div>
+          <!-- .col --> </div>
+        <!-- .row --> </div>
+      <!-- .container --> </div>
+    <!-- .bg-d0e9f4 -->
+  </form>
+</section>
+
+</div>
+
+<div ng-include="'templates/footer.html'" ></div>
